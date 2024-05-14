@@ -11,7 +11,8 @@ import Overlay from "./Overlay.svelte";
 import ScrollBlocker from "./ScrollBlocker.svelte";
 import Textfield from "./Textfield.svelte";
 import TextfieldList from "./TextfieldList.svelte";
-import Theme from "./Theme.ts";
+import Theme from "./Theme.js";
+import { bundledThemes, savedThemes } from "./Theme.js";
 export {
     Button,
     Clickable,
@@ -25,10 +26,12 @@ export {
     ScrollBlocker,
     Textfield,
     TextfieldList,
-    Theme
+    Theme,
+    bundledThemes,
+    savedThemes
 };
 
-import type { ImageUploadFile } from "./ImageUpload.ts";
+import type { ImageUploadFile } from "./ImageUpload.js";
 export type {
     ImageUploadFile
 };

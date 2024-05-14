@@ -1,5 +1,5 @@
 import Button from "./Button.svelte";
-import Clickable from "./Button.svelte";
+import Clickable from "./Clickable.svelte";
 import ContextMenu from "./ContextMenu.svelte";
 import ContextMenuItem from "./ContextMenuItem.svelte";
 import Dropdown from "./Dropdown.svelte";

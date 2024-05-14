@@ -24,7 +24,7 @@ img:not([src]) {
 
 <script lang="ts">
     import Clickable from "./Clickable.svelte";
-    import Theme from "./Theme.ts";
+    import Theme from "./Theme.js";
     
     export let onClick: ((event: MouseEvent) => void) | string | undefined = undefined;
     export let iconSrc: string = "";

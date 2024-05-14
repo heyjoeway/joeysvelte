@@ -17,7 +17,7 @@ div {
 
 <script lang="ts">
     
-import Theme from './Theme.ts';
+import Theme from './Theme.js';
 
 import { clickoutside } from '@svelte-put/clickoutside';
 import { fade } from 'svelte/transition';

@@ -45,7 +45,7 @@ div {
 
 <script lang="ts">
     
-import Theme from "./Theme.ts";
+import Theme from "./Theme.js";
 import Fa from "svelte-fa";
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 

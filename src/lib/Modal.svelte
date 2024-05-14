@@ -56,7 +56,7 @@ h1 {
 </style>
 
 <script lang="ts">
-    import Theme from './Theme.ts';
+    import Theme from './Theme.js';
     import Overlay from "./Overlay.svelte";
     import ScrollBlocker from './ScrollBlocker.svelte';
     

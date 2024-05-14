@@ -47,7 +47,7 @@ h1 {
   justify-content: flex-end;
 }</style>
 
-<script>import Theme from "./Theme.ts";
+<script>import Theme from "./Theme.js";
 import Overlay from "./Overlay.svelte";
 import ScrollBlocker from "./ScrollBlocker.svelte";
 import { fade } from "svelte/transition";

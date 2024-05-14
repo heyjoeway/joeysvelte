@@ -17,7 +17,7 @@ img:not([src]) {
 }</style>
 
 <script>import Clickable from "./Clickable.svelte";
-import Theme from "./Theme.ts";
+import Theme from "./Theme.js";
 export let onClick = void 0;
 export let iconSrc = "";
 export let color = $Theme.text.primary.color;

@@ -23,7 +23,7 @@ div input::placeholder {
   user-select: none;
 }</style>
 
-<script>import Theme from "./Theme.ts";
+<script>import Theme from "./Theme.js";
 export let value = "";
 export let label = "";
 export let placeholder = "";

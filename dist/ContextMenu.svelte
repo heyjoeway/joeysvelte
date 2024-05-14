@@ -8,7 +8,7 @@
   padding: 8px 0;
 }</style>
 
-<script>import Theme from "./Theme.ts";
+<script>import Theme from "./Theme.js";
 import { clickoutside } from "@svelte-put/clickoutside";
 import { fade } from "svelte/transition";
 import Overlay from "./Overlay.svelte";

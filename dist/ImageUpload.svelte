@@ -24,7 +24,7 @@ div div span {
 
 <script>import Fa from "svelte-fa";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import Theme from "./Theme.ts";
+import Theme from "./Theme.js";
 import Button from "./Button.svelte";
 export let value;
 export let label = "";

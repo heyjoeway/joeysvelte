@@ -33,7 +33,7 @@ div .icon {
   pointer-events: none;
 }</style>
 
-<script>import Theme from "./Theme.ts";
+<script>import Theme from "./Theme.js";
 import Fa from "svelte-fa";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 export let value = "";

@@ -56,7 +56,8 @@ h1 {
 </style>
 
 <script lang="ts">
-    import Theme from './Theme.js';
+    import Theming from './Theming.ts';
+    const currentTheme = Theming.currentTheme;
     import Overlay from "./Overlay.svelte";
     import ScrollBlocker from './ScrollBlocker.svelte';
     
@@ -93,10 +94,10 @@ h1 {
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <!-- svelte-ignore a11y-no-static-element-interactions -->
         <div class="inner-container"
-            style:background-color={$Theme.frame.background.color}
-            style:border-color={$Theme.frame.border.color}
-            style:border-width={$Theme.frame.border.width}
-            style:color={$Theme.text.primary.color}
+            style:background-color={$currentTheme.frame.background.color}
+            style:border-color={$currentTheme.frame.border.color}
+            style:border-width={$currentTheme.frame.border.width}
+            style:color={$currentTheme.text.primary.color}
             on:click|stopPropagation
         >
             <h1><slot name="header"></slot></h1>

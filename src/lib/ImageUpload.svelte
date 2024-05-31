@@ -34,7 +34,8 @@ div {
 import Fa from "svelte-fa";
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-import Theme from "./Theme.js";
+import Theming from "./Theming.ts";
+const currentTheme = Theming.currentTheme;
 import Button from "./Button.svelte";
 import type { ImageUploadFile } from "./ImageUpload.ts";
 
@@ -63,7 +64,7 @@ function clear() {
 <div>
     {#if label}
         <label for={label}
-            style:color={$Theme.text.secondary.color}
+            style:color={$currentTheme.text.secondary.color}
         >
             {label}
         </label>

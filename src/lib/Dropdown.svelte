@@ -45,7 +45,8 @@ div {
 
 <script lang="ts">
     
-import Theme from "./Theme.js";
+import Theming from "./Theming.ts";
+const currentTheme = Theming.currentTheme;
 import Fa from "svelte-fa";
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
@@ -58,8 +59,8 @@ export let onChange: (event: Event) => void;
     <select
         bind:value={value}
         on:change={onChange}
-        style:color={$Theme.text.primary.color}
-        style:background-color={$Theme.textfield.background.color}
+        style:color={$currentTheme.text.primary.color}
+        style:background-color={$currentTheme.textfield.background.color}
     >
         <slot></slot>
     </select>

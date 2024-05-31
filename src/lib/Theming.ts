@@ -1,6 +1,67 @@
 import { persisted } from 'svelte-persisted-store'
 import type { ImageUploadFile } from './ImageUpload.ts';
 
+export interface Theme {
+    text: {
+        primary: {
+            color: string
+        },
+        secondary: {
+            color: string
+        }
+    },
+    textfield: {
+        background: {
+            color: string
+        }
+    },
+    background: {
+        color: string,
+        image: ImageUploadFile,
+        topLeft: {
+            text: string,
+            color: string
+        },
+        bottomRight: {
+            color: string
+        }
+    },
+    category: {
+        colors: string[]
+    },
+    item: {
+        folder: {
+            color: string
+        },
+        liveStream: {
+            colorChecking: string,
+            colorOnline: string
+        }
+    },
+    frame: {
+        background: {
+            color: string
+        },
+        border: {
+            width: string,
+            color: string
+        }
+    },
+    action: {
+        colors: {
+            confirm: string,
+            warning: string,
+            danger: string
+        }
+    },
+    clickable: {
+        colors: {
+            hover: string,
+            active: string
+        }
+    }
+}
+
 const darkTheme = {
     text: {
         primary: {
@@ -66,7 +127,7 @@ const darkTheme = {
             active: "rgba(255,255,255,0.05)"
         }
     }
-};
+} as Theme;
 
 const lightTheme = {
     text: {
@@ -131,13 +192,17 @@ const lightTheme = {
             active: "rgba(255,255,255,0.05)"
         }
     }
-};
+} as Theme;
 
-let currentTheme = persisted('theme', darkTheme as any);
-
-export default currentTheme;
-export let bundledThemes: { [key: string]: any } = {
+let currentTheme = persisted('theme', darkTheme as Theme);
+let bundledThemes: Record<string, Theme> = {
     "Dark": darkTheme,
     "Light": lightTheme
 };
-export let savedThemes = persisted('themes', {} as any);
+let savedThemes = persisted('themes', {} as Record<string, Theme>);
+
+export default {
+    currentTheme,
+    bundledThemes,
+    savedThemes
+};

@@ -34,7 +34,8 @@ div {
 
 <script lang="ts">
 
-import Theme from "./Theme.js";
+import Theming from "./Theming.ts";
+const currentTheme = Theming.currentTheme;
 
 export let value: string = "";
 export let label: string = "";
@@ -49,7 +50,7 @@ export let onKeydown: (event: KeyboardEvent) => void = () => {};
 <div>
     {#if label}
         <label for={label}
-            style:color={$Theme.text.secondary.color}
+            style:color={$currentTheme.text.secondary.color}
         >
             {label}
         </label>
@@ -60,9 +61,9 @@ export let onKeydown: (event: KeyboardEvent) => void = () => {};
         type="text"
         placeholder={placeholder}
         autofocus={autofocus}
-        style="--placeholder-color: {$Theme.text.secondary.color}"
-        style:color={$Theme.text.primary.color}
-        style:background-color={$Theme.textfield.background.color}
+        style="--placeholder-color: {$currentTheme.text.secondary.color}"
+        style:color={$currentTheme.text.primary.color}
+        style:background-color={$currentTheme.textfield.background.color}
         bind:value={value}
         on:input={onInput}
         on:keydown={onKeydown}

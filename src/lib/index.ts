@@ -12,9 +12,9 @@ import ScrollBlocker from "./ScrollBlocker.svelte";
 import Textfield from "./Textfield.svelte";
 import TextfieldList from "./TextfieldList.svelte";
 import Background from "./Background.svelte";
-import Theme from "./Theme.js";
 import Animations from "./Animations.js";
-import { bundledThemes, savedThemes } from "./Theme.js";
+import Theming from "./Theming.ts";
+import type { Theme } from "./Theming.ts";
 export {
     Background,
     Button,
@@ -30,12 +30,11 @@ export {
     Textfield,
     TextfieldList,
     Animations,
-    Theme,
-    bundledThemes,
-    savedThemes
+    Theming
 };
 
 import type { ImageUploadFile } from "./ImageUpload.js";
 export type {
-    ImageUploadFile
+    ImageUploadFile,
+    Theme
 };

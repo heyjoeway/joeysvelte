@@ -17,7 +17,8 @@ div {
 
 <script lang="ts">
     
-import Theme from './Theme.js';
+import Theming from './Theming.ts';
+const currentTheme = Theming.currentTheme;
 
 import { clickoutside } from '@svelte-put/clickoutside';
 import { fade } from 'svelte/transition';
@@ -36,9 +37,9 @@ export let x, y: number;
             transition:fade={{ duration: 100 }}
             use:clickoutside={{ event: 'mousedown' }}
             on:clickoutside={() => open = false}
-            style:background-color={$Theme.frame.background.color}
-            style:border-color={$Theme.frame.border.color}
-            style:border-width={$Theme.frame.border.width}
+            style:background-color={$currentTheme.frame.background.color}
+            style:border-color={$currentTheme.frame.border.color}
+            style:border-width={$currentTheme.frame.border.width}
             style:top="{y}px"
             style:left="{x}px"
         >

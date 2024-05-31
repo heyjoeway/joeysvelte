@@ -11,9 +11,12 @@ import Overlay from "./Overlay.svelte";
 import ScrollBlocker from "./ScrollBlocker.svelte";
 import Textfield from "./Textfield.svelte";
 import TextfieldList from "./TextfieldList.svelte";
+import Background from "./Background.svelte";
 import Theme from "./Theme.js";
+import Animations from "./Animations.js";
 import { bundledThemes, savedThemes } from "./Theme.js";
 export {
+    Background,
     Button,
     Clickable,
     ContextMenu,
@@ -26,6 +29,7 @@ export {
     ScrollBlocker,
     Textfield,
     TextfieldList,
+    Animations,
     Theme,
     bundledThemes,
     savedThemes

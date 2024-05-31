@@ -37,7 +37,8 @@
 </style>
 
 <script>import Theme from "./Theme.js";
-import blurFall from "./Animations.js";
+import Animations from "./Animations.js";
+const blurFall = Animations.blurFall;
 let startAnimation = false;
 import { onMount } from "svelte";
 onMount(() => {

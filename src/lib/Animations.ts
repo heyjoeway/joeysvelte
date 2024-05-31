@@ -65,4 +65,4 @@ function blurSink(node: HTMLElement, params?: {
 	};
 }
 
-export { blurFall, blurSink };
+export default { blurFall, blurSink };

@@ -48,4 +48,4 @@ function blurSink(node, params) {
         }
     };
 }
-export { blurFall, blurSink };
+export default { blurFall, blurSink };

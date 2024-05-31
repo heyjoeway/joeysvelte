@@ -19,4 +19,8 @@ declare function blurSink(node: HTMLElement, params?: {
     duration: number;
     css: (t: number) => string;
 };
-export { blurFall, blurSink };
+declare const _default: {
+    blurFall: typeof blurFall;
+    blurSink: typeof blurSink;
+};
+export default _default;

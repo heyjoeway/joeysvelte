@@ -3,7 +3,7 @@ declare const __propDef: {
     props: {
         onClick?: ((event: MouseEvent) => void) | string | undefined;
         iconSrc?: string | undefined;
-        color?: string | undefined;
+        color?: string | null | undefined;
     };
     events: {
         [evt: string]: CustomEvent<any>;

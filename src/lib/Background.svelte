@@ -38,8 +38,7 @@
 
 <script lang="ts">
 
-import Theming from "./Theming.ts";
-const currentTheme = Theming.currentTheme;
+import { currentTheme } from "./Theming";
 
 import Animations from "./Animations.js";
 const blurFall = Animations.blurFall;

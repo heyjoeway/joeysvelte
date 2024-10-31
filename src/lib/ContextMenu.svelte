@@ -17,8 +17,7 @@ div {
 
 <script lang="ts">
     
-import Theming from './Theming.ts';
-const currentTheme = Theming.currentTheme;
+import { currentTheme } from './Theming';
 
 import { clickoutside } from '@svelte-put/clickoutside';
 import { fade } from 'svelte/transition';

@@ -47,7 +47,7 @@ h1 {
   justify-content: flex-end;
 }</style>
 
-<script>import Theme from "./Theme.js";
+<script>import { currentTheme } from "./Theming";
 import Overlay from "./Overlay.svelte";
 import ScrollBlocker from "./ScrollBlocker.svelte";
 import { fade } from "svelte/transition";
@@ -82,10 +82,10 @@ export let open = false;
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <!-- svelte-ignore a11y-no-static-element-interactions -->
         <div class="inner-container"
-            style:background-color={$Theme.frame.background.color}
-            style:border-color={$Theme.frame.border.color}
-            style:border-width={$Theme.frame.border.width}
-            style:color={$Theme.text.primary.color}
+            style:background-color={$currentTheme.frame.background.color}
+            style:border-color={$currentTheme.frame.border.color}
+            style:border-width={$currentTheme.frame.border.width}
+            style:color={$currentTheme.text.primary.color}
             on:click|stopPropagation
         >
             <h1><slot name="header"></slot></h1>

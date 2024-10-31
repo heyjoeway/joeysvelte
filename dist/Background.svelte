@@ -36,7 +36,7 @@
 
 </style>
 
-<script>import Theme from "./Theme.js";
+<script>import { currentTheme } from "./Theming";
 import Animations from "./Animations.js";
 const blurFall = Animations.blurFall;
 let startAnimation = false;
@@ -48,8 +48,8 @@ onMount(() => {
 
 <div
     class="bg"
-    style:background-color={$Theme.background.color}
-    style:background-image="url({$Theme.background.image.uri})"
+    style:background-color={$currentTheme.background.color}
+    style:background-image="url({$currentTheme.background.image.uri})"
 />
 
 {#if startAnimation}
@@ -63,7 +63,7 @@ onMount(() => {
         radiusEnd: 12,
         duration: 1000
     }}
-    style:color={$Theme.background.topLeft.color}
+    style:color={$currentTheme.background.topLeft.color}
 >
     <slot name="topLeft"></slot>
 </div>
@@ -79,7 +79,7 @@ onMount(() => {
         rotateStart: 60,
         rotateEnd: 45
     }}
-    style:color={$Theme.background.bottomRight.color}
+    style:color={$currentTheme.background.bottomRight.color}
 >
     <slot name="bottomRight"></slot>
 </div>

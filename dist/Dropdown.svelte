@@ -13,6 +13,8 @@ div select {
   border-radius: 24px;
   backdrop-filter: blur(32px);
   box-sizing: border-box;
+  color: var(--menu-color);
+  background-color: var(--menu-background-color);
   -moz-appearance: none; /* Firefox */
   -webkit-appearance: none; /* Safari and Chrome */
   appearance: none;
@@ -33,19 +35,23 @@ div .icon {
   pointer-events: none;
 }</style>
 
-<script>import Theme from "./Theme.js";
+<script>import { currentTheme } from "./Theming";
 import Fa from "svelte-fa";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 export let value = "";
 export let onChange;
+function rgba2rgb(rgba) {
+  let [r, g, b] = rgba.replace("rgba(", "").replace(")", "").split(",").map((x) => parseInt(x));
+  return `rgb(${r}, ${g}, ${b})`;
+}
 </script>
 
 <div>
     <select
         bind:value={value}
         on:change={onChange}
-        style:color={$Theme.text.primary.color}
-        style:background-color={$Theme.textfield.background.color}
+        style:color={$currentTheme.text.primary.color}
+        style:background-color={$currentTheme.textfield.background.color}
     >
         <slot></slot>
     </select>

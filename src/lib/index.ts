@@ -4,6 +4,8 @@ import Clickable from "./Clickable.svelte";
 import ContextMenu from "./ContextMenu.svelte";
 import ContextMenuItem from "./ContextMenuItem.svelte";
 import Dropdown from "./Dropdown.svelte";
+import DropdownGroup from "./DropdownGroup.svelte";
+import DropdownOption from "./DropdownOption.svelte";
 import ImageUpload from "./ImageUpload.svelte";
 import Modal from "./Modal.svelte";
 import Navbar from "./Navbar.svelte";
@@ -13,8 +15,8 @@ import Textfield from "./Textfield.svelte";
 import TextfieldList from "./TextfieldList.svelte";
 import Background from "./Background.svelte";
 import Animations from "./Animations.js";
-import Theming from "./Theming.ts";
-import type { Theme } from "./Theming.ts";
+import Theming from "./Theming";
+import type { Theme } from "./Theming";
 export {
     Background,
     Button,
@@ -22,6 +24,8 @@ export {
     ContextMenu,
     ContextMenuItem,
     Dropdown,
+    DropdownGroup,
+    DropdownOption,
     ImageUpload,
     Modal,
     Navbar,

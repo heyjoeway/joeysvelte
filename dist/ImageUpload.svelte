@@ -24,7 +24,7 @@ div div span {
 
 <script>import Fa from "svelte-fa";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import Theme from "./Theme.js";
+import { currentTheme } from "./Theming";
 import Button from "./Button.svelte";
 export let value;
 export let label = "";
@@ -48,7 +48,7 @@ function clear() {
 <div>
     {#if label}
         <label for={label}
-            style:color={$Theme.text.secondary.color}
+            style:color={$currentTheme.text.secondary.color}
         >
             {label}
         </label>

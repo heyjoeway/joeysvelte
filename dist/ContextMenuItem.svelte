@@ -19,13 +19,13 @@ img:not([src]) {
 }</style>
 
 <script>import Clickable from "./Clickable.svelte";
-import Theme from "./Theme.js";
+import { currentTheme } from "./Theming";
 export let onClick = void 0;
 export let iconSrc = "";
 </script>
 
 <Clickable width='100%' height='24px' onClick={onClick}>
-    <div style:color={$Theme.text.primary.color}>
+    <div style:color={$currentTheme.text.primary.color}>
         <!-- svelte-ignore a11y-missing-attribute -->
         <img src={iconSrc} />
         <slot />

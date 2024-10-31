@@ -34,8 +34,7 @@ div {
 import Fa from "svelte-fa";
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-import Theming from "./Theming.ts";
-const currentTheme = Theming.currentTheme;
+import { currentTheme } from "./Theming";
 import Button from "./Button.svelte";
 import type { ImageUploadFile } from "./ImageUpload.ts";
 

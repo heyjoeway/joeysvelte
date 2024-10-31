@@ -16,6 +16,9 @@ div {
         backdrop-filter: blur(32px);
         box-sizing: border-box;
         
+        color: var(--menu-color);
+        background-color: var(--menu-background-color);
+        
         -moz-appearance:none; /* Firefox */
         -webkit-appearance:none; /* Safari and Chrome */
         appearance:none;
@@ -45,8 +48,7 @@ div {
 
 <script lang="ts">
     
-import Theming from "./Theming.ts";
-const currentTheme = Theming.currentTheme;
+import { currentTheme } from "./Theming";
 import Fa from "svelte-fa";
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 

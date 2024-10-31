@@ -23,7 +23,7 @@ div input::placeholder {
   user-select: none;
 }</style>
 
-<script>import Theme from "./Theme.js";
+<script>import { currentTheme } from "./Theming";
 export let value = "";
 export let label = "";
 export let placeholder = "";
@@ -37,7 +37,7 @@ export let onKeydown = () => {
 <div>
     {#if label}
         <label for={label}
-            style:color={$Theme.text.secondary.color}
+            style:color={$currentTheme.text.secondary.color}
         >
             {label}
         </label>
@@ -48,9 +48,9 @@ export let onKeydown = () => {
         type="text"
         placeholder={placeholder}
         autofocus={autofocus}
-        style="--placeholder-color: {$Theme.text.secondary.color}"
-        style:color={$Theme.text.primary.color}
-        style:background-color={$Theme.textfield.background.color}
+        style="--placeholder-color: {$currentTheme.text.secondary.color}"
+        style:color={$currentTheme.text.primary.color}
+        style:background-color={$currentTheme.textfield.background.color}
         bind:value={value}
         on:input={onInput}
         on:keydown={onKeydown}

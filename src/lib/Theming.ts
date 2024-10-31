@@ -194,15 +194,9 @@ const lightTheme = {
     }
 } as Theme;
 
-let currentTheme = persisted('theme', darkTheme as Theme);
-let bundledThemes: Record<string, Theme> = {
+export let currentTheme = persisted('theme', darkTheme as Theme);
+export let bundledThemes: Record<string, Theme> = {
     "Dark": darkTheme,
     "Light": lightTheme
 };
-let savedThemes = persisted('themes', {} as Record<string, Theme>);
-
-export default {
-    currentTheme,
-    bundledThemes,
-    savedThemes
-};
+export let savedThemes = persisted('themes', {} as Record<string, Theme>);

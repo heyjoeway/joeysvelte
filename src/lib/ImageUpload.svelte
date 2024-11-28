@@ -30,7 +30,7 @@ div {
 </style>
 
 <script lang="ts">
-    
+
 import Fa from "svelte-fa";
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 

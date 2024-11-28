@@ -27,3 +27,7 @@ To publish your library to [npm](https://www.npmjs.com):
 ```bash
 npm publish
 ```
+
+## Notes to Self
+
+If getting errors about "svelte-fa", run `npm install svelte-fa -D` in your project (not in joeysvelte).

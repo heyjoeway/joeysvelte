@@ -69,7 +69,7 @@ export let open = false;
             duration: 500,
             easing: quartOut
         }}
-    />
+    ></div>
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div
         class="outer-container"

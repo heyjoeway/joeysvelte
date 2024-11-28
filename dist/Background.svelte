@@ -50,7 +50,7 @@ onMount(() => {
     class="bg"
     style:background-color={$currentTheme.background.color}
     style:background-image="url({$currentTheme.background.image.uri})"
-/>
+></div>
 
 {#if startAnimation}
 

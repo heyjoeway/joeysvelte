@@ -40,10 +40,6 @@ import Fa from "svelte-fa";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 export let value = "";
 export let onChange;
-function rgba2rgb(rgba) {
-  let [r, g, b] = rgba.replace("rgba(", "").replace(")", "").split(",").map((x) => parseInt(x));
-  return `rgb(${r}, ${g}, ${b})`;
-}
 </script>
 
 <div>

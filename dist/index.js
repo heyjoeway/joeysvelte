@@ -15,4 +15,6 @@ import Textfield from "./Textfield.svelte";
 import TextfieldList from "./TextfieldList.svelte";
 import Background from "./Background.svelte";
 import Animations from "./Animations.js";
-export { Background, Button, Clickable, ContextMenu, ContextMenuItem, Dropdown, DropdownGroup, DropdownOption, ImageUpload, Modal, Navbar, Overlay, ScrollBlocker, Textfield, TextfieldList, Animations };
+import Frame from "./Frame.svelte";
+import { bundledThemes, currentTheme } from "./Theming.js";
+export { Background, Button, Clickable, ContextMenu, ContextMenuItem, Dropdown, DropdownGroup, DropdownOption, ImageUpload, Modal, Navbar, Overlay, ScrollBlocker, Textfield, TextfieldList, Animations, bundledThemes, currentTheme, Frame };

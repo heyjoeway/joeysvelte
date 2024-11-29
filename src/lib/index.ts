@@ -15,7 +15,12 @@ import Textfield from "./Textfield.svelte";
 import TextfieldList from "./TextfieldList.svelte";
 import Background from "./Background.svelte";
 import Animations from "./Animations.js";
-import type { Theme } from "./Theming";
+import Frame from "./Frame.svelte";
+import {
+    bundledThemes,
+    currentTheme,
+    type Theme
+} from "./Theming.js";
 export {
     Background,
     Button,
@@ -32,7 +37,10 @@ export {
     ScrollBlocker,
     Textfield,
     TextfieldList,
-    Animations
+    Animations,
+    bundledThemes,
+    currentTheme,
+    Frame
 };
 
 import type { ImageUploadFile } from "./ImageUpload.js";

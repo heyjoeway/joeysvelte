@@ -3,25 +3,31 @@
 .bg-element {   
     position: fixed;
     font-size: 350px;
-    font-weight: bold;
+    font-weight: normal;
     user-select: none;
     pointer-events: none;
 }
 
 #bg-top-left { 
+    position: absolute;
     font-size: calc(min(40vw, 350px));
-    top: -4.1vw;
+    top: -7vw;
     left: 0.95vh;
     overflow-x: hidden;
     filter: blur(12px);
+    white-space: nowrap;
+    text-transform: lowercase;
 }
 
-#bg-bottom-right { 
+#bg-bottom-right {
+    position: absolute;
     font-size: calc(min(92vw, 1000px));
-    bottom: -0.3em;
-    right: -0.09em;
+    bottom: -0.5em;
+    right: -0.1em;
     filter: blur(12px);
     rotate: z 45deg;
+    white-space: nowrap;
+    text-transform: lowercase;
 }
 
 .bg {
@@ -32,6 +38,8 @@
     height: 100%;
     background-position: center;
     background-size: cover;
+    z-index: -9999;
+    font-family: 'franklin_gothicregular';
 }
 
 </style>
@@ -50,38 +58,40 @@ onMount(() => {
     class="bg"
     style:background-color={$currentTheme.background.color}
     style:background-image="url({$currentTheme.background.image.uri})"
-></div>
-
-{#if startAnimation}
-
-<div 
-    class="bg-element"
-    id="bg-top-left"
-    in:blurFall={{
-        delay: 250,
-        radiusStart: 128,
-        radiusEnd: 12,
-        duration: 1000
-    }}
-    style:color={$currentTheme.background.topLeft.color}
 >
-    <slot name="topLeft"></slot>
-</div>
 
-<div
-    class="bg-element"
-    id="bg-bottom-right"
-    in:blurFall|global={{
-        delay: 750,
-        radiusStart: 128,
-        radiusEnd: 12,
-        duration: 1000,
-        rotateStart: 60,
-        rotateEnd: 45
-    }}
-    style:color={$currentTheme.background.bottomRight.color}
->
-    <slot name="bottomRight"></slot>
-</div>
+    {#if startAnimation}
 
-{/if}
+    <div 
+        class="bg-element"
+        id="bg-top-left"
+        in:blurFall={{
+            delay: 250,
+            radiusStart: 128,
+            radiusEnd: 12,
+            duration: 1000
+        }}
+        style:color={$currentTheme.background.topLeft.color}
+    >
+        <slot name="topLeft"></slot>
+    </div>
+
+    <div
+        class="bg-element"
+        id="bg-bottom-right"
+        in:blurFall|global={{
+            delay: 750,
+            radiusStart: 128,
+            radiusEnd: 12,
+            duration: 1000,
+            rotateStart: 60,
+            rotateEnd: 45
+        }}
+        style:color={$currentTheme.background.bottomRight.color}
+    >
+        <slot name="bottomRight"></slot>
+    </div>
+
+    {/if}
+
+</div>

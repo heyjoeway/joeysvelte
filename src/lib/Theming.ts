@@ -82,10 +82,10 @@ const darkTheme = {
         image: {} as ImageUploadFile,
         topLeft: {
             text: "start",
-            color: "rgba(128, 128, 128, 0.15)"
+            color: "rgba(128, 128, 128, 0.1)"
         },
         bottomRight: {
-            color: "rgba(128, 128, 128, 0.15)"   
+            color: "rgba(128, 128, 128, 0.1)"   
         }
     },
     category: {

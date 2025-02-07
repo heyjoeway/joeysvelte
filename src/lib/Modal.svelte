@@ -1,29 +1,4 @@
 <style lang="scss">
-.bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    backdrop-filter: blur(8px);
-}
-
-.outer-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding: 32px;
-    box-sizing: border-box;
-    
-    scrollbar-color: #111 #000;
-}
 
 .inner-container {
     width: 350px;
@@ -56,54 +31,25 @@ h1 {
 </style>
 
 <script lang="ts">
-    import { currentTheme } from './Theming';
+    import { currentTheme } from './Themding.ts';
     import Overlay from "./Overlay.svelte";
-    import ScrollBlocker from './ScrollBlocker.svelte';
-    
-    import { fade } from 'svelte/transition';
-    import { quartOut } from 'svelte/easing';
     
     export let open: boolean = false;
 </script>
 
-{#if open}
-
-<ScrollBlocker />
-
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<Overlay>
+<Overlay bind:open={open}>
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <!-- svelte-ignore a11y-no-static-element-interactions -->
-    <div
-        class="bg"
-        transition:fade={{
-            duration: 500,
-            easing: quartOut
-        }}
-    ></div>
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <div
-        class="outer-container"
-        on:click={() => open = false}
-        transition:fade={{
-            duration: 100,
-            easing: quartOut
-        }}
+    <div class="inner-container"
+        style:background-color={$currentTheme.frame.background.color}
+        style:border-color={$currentTheme.frame.border.color}
+        style:border-width={$currentTheme.frame.border.width}
+        style:color={$currentTheme.text.primary.color}
+        on:click|stopPropagation
     >
-        <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <!-- svelte-ignore a11y-no-static-element-interactions -->
-        <div class="inner-container"
-            style:background-color={$currentTheme.frame.background.color}
-            style:border-color={$currentTheme.frame.border.color}
-            style:border-width={$currentTheme.frame.border.width}
-            style:color={$currentTheme.text.primary.color}
-            on:click|stopPropagation
-        >
-            <h1><slot name="header"></slot></h1>
-            <slot name="body"></slot>
-            <div class="footer"><slot name="footer"></slot></div>
-        </div>
+        <h1><slot name="header"></slot></h1>
+        <slot name="body"></slot>
+        <div class="footer"><slot name="footer"></slot></div>
     </div>
 </Overlay>
-
-{/if}

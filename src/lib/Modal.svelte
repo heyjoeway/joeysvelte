@@ -31,7 +31,7 @@ h1 {
 </style>
 
 <script lang="ts">
-    import { currentTheme } from './Themding.ts';
+    import { currentTheme } from './Theming.js';
     import Overlay from "./Overlay.svelte";
     
     export let open: boolean = false;

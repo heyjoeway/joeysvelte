@@ -53,6 +53,8 @@ a:hover {
     
     let showCopyConfirmation = false;
     
+    let elementA: HTMLAnchorElement;
+    
     async function onAClick(event: MouseEvent) {
         if (!linkCopyOnClick) return;
         if (showCopyConfirmation) {
@@ -60,7 +62,7 @@ a:hover {
             return;
         }
         event.preventDefault();
-        await navigator.clipboard.writeText(onClick as string);
+        await navigator.clipboard.writeText(elementA.href);
         showCopyConfirmation = true;
         setTimeout(() => { showCopyConfirmation = false; }, 1000);
     }
@@ -77,7 +79,7 @@ a:hover {
     style:height={height}
 >
     {#if typeof onClick === 'string'}
-        <a on:click={onAClick} href={onClick}>
+        <a bind:this={elementA} on:click={onAClick} href={onClick}>
             {#if showCopyConfirmation}
                 ✅ Copied!
             {:else}

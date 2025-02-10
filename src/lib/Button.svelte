@@ -24,13 +24,19 @@ img:not([src]) {
     import { currentTheme } from "./Theming.js";
     
     export let onClick: ((event: MouseEvent) => void) | string | undefined = undefined;
+    export let preloadLink = true;
     export let linkCopyOnClick = false;
     export let iconSrc: string = "";
     
     export let color: string | null = null;
 </script>
 
-<Clickable height='32px' onClick={onClick} linkCopyOnClick={linkCopyOnClick}>
+<Clickable
+    height='32px'
+    onClick={onClick}
+    linkCopyOnClick={linkCopyOnClick}
+    preloadLink={preloadLink}
+>
     <div style:color={color || $currentTheme.text.primary.color}>
         <!-- svelte-ignore a11y-missing-attribute -->
         {#if iconSrc}

@@ -36,6 +36,7 @@ a:hover {
     export let height: string = "default";
     export let onClick: ((event: MouseEvent) => void) | string | undefined = undefined;
     export let onContextMenu: ((event: MouseEvent) => void) | undefined = undefined;
+    export let preloadLink = true;
     export let style: string = "";
     export let linkCopyOnClick = false;
     
@@ -79,7 +80,12 @@ a:hover {
     style:height={height}
 >
     {#if typeof onClick === 'string'}
-        <a bind:this={elementA} on:click={onAClick} href={onClick}>
+        <a
+            bind:this={elementA}
+            on:click={onAClick} href={onClick}
+            data-sveltekit-reload={!preloadLink}
+            data-sveltekit-preload-data={preloadLink ? "hover" : "tap"}
+        >
             {#if showCopyConfirmation}
                 ✅ Copied!
             {:else}

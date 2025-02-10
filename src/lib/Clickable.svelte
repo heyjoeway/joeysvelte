@@ -37,6 +37,7 @@ a:hover {
     export let onClick: ((event: MouseEvent) => void) | string | undefined = undefined;
     export let onContextMenu: ((event: MouseEvent) => void) | undefined = undefined;
     export let style: string = "";
+    export let linkCopyOnClick = false;
     
     function handleClick(event: MouseEvent) {
         if (typeof onClick === 'function')
@@ -48,6 +49,20 @@ a:hover {
             event.preventDefault();
             onContextMenu(event);
         }
+    }
+    
+    let showCopyConfirmation = false;
+    
+    async function onAClick(event: MouseEvent) {
+        if (!linkCopyOnClick) return;
+        if (showCopyConfirmation) {
+            showCopyConfirmation = false;
+            return;
+        }
+        event.preventDefault();
+        await navigator.clipboard.writeText(onClick as string);
+        showCopyConfirmation = true;
+        setTimeout(() => { showCopyConfirmation = false; }, 1000);
     }
 </script>
 
@@ -62,7 +77,13 @@ a:hover {
     style:height={height}
 >
     {#if typeof onClick === 'string'}
-        <a href={onClick}><slot></slot></a>
+        <a on:click={onAClick} href={onClick}>
+            {#if showCopyConfirmation}
+                ✅ Copied!
+            {:else}
+                <slot></slot>
+            {/if}
+        </a>
     {:else}
         <slot></slot>
     {/if}

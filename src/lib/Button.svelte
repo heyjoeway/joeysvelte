@@ -21,15 +21,16 @@ img:not([src]) {
 
 <script lang="ts">
     import Clickable from "./Clickable.svelte";
-    import { currentTheme } from "./Theming";
+    import { currentTheme } from "./Theming.js";
     
     export let onClick: ((event: MouseEvent) => void) | string | undefined = undefined;
+    export let linkCopyOnClick = false;
     export let iconSrc: string = "";
     
     export let color: string | null = null;
 </script>
 
-<Clickable height='32px' onClick={onClick}>
+<Clickable height='32px' onClick={onClick} linkCopyOnClick={linkCopyOnClick}>
     <div style:color={color || $currentTheme.text.primary.color}>
         <!-- svelte-ignore a11y-missing-attribute -->
         {#if iconSrc}

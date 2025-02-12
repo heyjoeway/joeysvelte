@@ -8,6 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    word-break: break-all;
 }
 
 .clickable:hover {
@@ -23,7 +24,7 @@
 
 a {
     color: white;
-    text-decoration: none   ;
+    text-decoration: none;
 }
 
 a:hover {

@@ -27,12 +27,13 @@ img:not([src]) {
     export let preloadLink = true;
     export let linkCopyOnClick = false;
     export let iconSrc: string = "";
+    export let height = "32px";
     
     export let color: string | null = null;
 </script>
 
 <Clickable
-    height='32px'
+    height={height}
     onClick={onClick}
     linkCopyOnClick={linkCopyOnClick}
     preloadLink={preloadLink}

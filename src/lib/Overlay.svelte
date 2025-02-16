@@ -34,32 +34,16 @@
 
 <script lang="ts">
     import ScrollBlocker from './ScrollBlocker.svelte';
+    import RootAnchor from './RootAnchor.svelte';
     
     import { fade } from 'svelte/transition';
     import { quartOut } from 'svelte/easing';
-    
-    import { onMount } from 'svelte';
-    
+        
     let openPrev = false;
     export let open: boolean = false;
     export let allowClose: boolean = true;
-
-    let overlay: Node;
-    let outerContainer: Node;
     
-    onMount(() => {
-        let container = document.getElementById('overlay-container');
-        if (!container) {
-            container = document.body.appendChild(document.createElement('div'));
-            container.id = 'overlay-container';
-        }
-        container.appendChild(overlay)
-                
-        // On Unmount
-        return () => {
-            container.removeChild(overlay);
-        }
-    });
+    let outerContainer: Node;
     
     function clickOutsideHandler(event: MouseEvent) {
         if (event.target !== outerContainer) return;
@@ -86,36 +70,32 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<div
-    bind:this={overlay}
-    class="overlay"
->
-{#if open}
-
-    <ScrollBlocker />
-    
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <!-- svelte-ignore a11y-no-static-element-interactions -->
-    <div
-        class="bg"
-        transition:fade={{
-            duration: 500,
-            easing: quartOut
-        }}
-    ></div>
-    
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <!-- svelte-ignore a11y-no-static-element-interactions -->
-    <div
-        class="outer-container"
-        on:click={clickOutsideHandler}
-        bind:this={outerContainer}
-        transition:fade={{
-            duration: 100,
-            easing: quartOut
-        }}
-    >
-        <slot />
-    </div>
+<RootAnchor>
+    {#if open}
+        <ScrollBlocker />
+        
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-static-element-interactions -->
+        <div
+            class="bg"
+            transition:fade={{
+                duration: 500,
+                easing: quartOut
+            }}
+        ></div>
+        
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-static-element-interactions -->
+        <div
+            class="outer-container"
+            on:click={clickOutsideHandler}
+            bind:this={outerContainer}
+            transition:fade={{
+                duration: 100,
+                easing: quartOut
+            }}
+        >
+            <slot />
+        </div>
     {/if}
-</div>
+</RootAnchor>

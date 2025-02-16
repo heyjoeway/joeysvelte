@@ -24,7 +24,8 @@ img:not([src]) {
 
 <script lang="ts">
     import Clickable from "./Clickable.svelte";
-    import { currentTheme } from "./Theming";
+    import { currentTheme } from "./Theming.js";
+    import { styleObjToStr } from "./Utils.js";
         
     export let onClick: ((event: MouseEvent) => void) | string | undefined = undefined;
     export let iconSrc: string = "";
@@ -33,7 +34,12 @@ img:not([src]) {
 <Clickable width='100%' height='24px' onClick={onClick}>
     <div style:color={$currentTheme.text.primary.color}>
         <!-- svelte-ignore a11y-missing-attribute -->
-        <img src={iconSrc} />
+        <img
+            style={styleObjToStr({
+                visibility: iconSrc ? "" : "hidden"
+            })}
+            src={iconSrc}
+        />
         <slot />
     </div>
 </Clickable>

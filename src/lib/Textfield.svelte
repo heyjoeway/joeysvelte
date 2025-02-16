@@ -34,7 +34,7 @@ div {
 
 <script lang="ts">
 
-import { currentTheme } from "./Theming";
+import { currentTheme } from "./Theming.js";
 
 export let value: string = "";
 export let label: string = "";

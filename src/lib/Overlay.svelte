@@ -24,7 +24,7 @@
         padding: 32px;
         box-sizing: border-box;
         
-        scrollbar-color: #111 #000;
+        scrollbar-color: #444 #000
     }
 </style>
 

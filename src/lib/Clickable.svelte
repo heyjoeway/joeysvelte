@@ -39,11 +39,22 @@ a:hover {
     export let onContextMenu: ((event: MouseEvent) => void) | undefined = undefined;
     export let preloadLink = true;
     export let style: string = "";
-    export let linkCopyOnClick = false;
+    export let copyOnClick: string | undefined = undefined;
     
-    function handleClick(event: MouseEvent) {
-        if (typeof onClick === 'function')
+    async function handleClick(event: MouseEvent) {
+        if (typeof onClick === 'function') {
             onClick(event);
+            return;
+        }
+        
+        if (!copyOnClick) return;
+        if (showCopyConfirmation) {
+            showCopyConfirmation = false;
+            return;
+        }
+        await navigator.clipboard.writeText(copyOnClick);
+        showCopyConfirmation = true;
+        setTimeout(() => { showCopyConfirmation = false; }, 1000);
     }
     
     function handleContextMenu(event: MouseEvent) {
@@ -58,15 +69,8 @@ a:hover {
     let elementA: HTMLAnchorElement;
     
     async function onAClick(event: MouseEvent) {
-        if (!linkCopyOnClick) return;
-        if (showCopyConfirmation) {
-            showCopyConfirmation = false;
-            return;
-        }
+        if (!copyOnClick) return;
         event.preventDefault();
-        await navigator.clipboard.writeText(elementA.href);
-        showCopyConfirmation = true;
-        setTimeout(() => { showCopyConfirmation = false; }, 1000);
     }
 </script>
 
@@ -94,6 +98,10 @@ a:hover {
             {/if}
         </a>
     {:else}
-        <slot></slot>
+        {#if showCopyConfirmation}
+            ✅ Copied!
+        {:else}
+            <slot></slot>
+        {/if}
     {/if}
 </div>

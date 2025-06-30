@@ -5,6 +5,8 @@ div {
     display: flex;
     align-items: center;
     flex-direction: row;
+    backdrop-filter: blur(8px);
+    height: 100%;
 }
 
 img {
@@ -25,7 +27,7 @@ img:not([src]) {
     
     export let onClick: ((event: MouseEvent) => void) | string | undefined = undefined;
     export let preloadLink = true;
-    export let linkCopyOnClick = false;
+    export let copyOnClick: string | undefined = undefined;
     export let iconSrc: string = "";
     export let height = "32px";
     
@@ -35,7 +37,7 @@ img:not([src]) {
 <Clickable
     height={height}
     onClick={onClick}
-    linkCopyOnClick={linkCopyOnClick}
+    copyOnClick={copyOnClick}
     preloadLink={preloadLink}
 >
     <div style:color={color || $currentTheme.text.primary.color}>

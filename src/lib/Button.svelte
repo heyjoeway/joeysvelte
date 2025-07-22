@@ -1,6 +1,5 @@
 <style lang="scss">
 span :global(.clickable) {
-    padding: 0 var(--joeysvelte-general-gap-md);
     border: var(--joeysvelte-frame-border-width) solid var(--joeysvelte-frame-border-color-default);
     border-radius: 16px;
     display: flex;
@@ -12,6 +11,14 @@ span :global(.clickable) {
     color: var(--joeysvelte-text-colors-primary);
     background-color: var(--joeysvelte-frame-background-color);
     // line-height: 100%;
+}
+
+span.not-link :global(.clickable) {
+    padding: 0 var(--joeysvelte-general-gap-md);
+}
+
+span.link :global(a) {
+    padding: 0 var(--joeysvelte-general-gap-md);
 }
 
 img {
@@ -36,9 +43,11 @@ img:not([src]) {
     export let height = "32px";
     
     export let color: string | null = null;
+    
+    const isLink = typeof onClick === 'string';
 </script>
 
-<span>
+<span class={isLink ? "link" : "not-link"}>
     <Clickable
         height={height}
         onClick={onClick}

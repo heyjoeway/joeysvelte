@@ -1,18 +1,23 @@
 <style lang="scss">
-
-div {
-    padding: 8px;
+span :global(.clickable) {
+    padding: 0 var(--joeysvelte-general-gap-md);
+    border: var(--joeysvelte-frame-border-width) solid var(--joeysvelte-frame-border-color-default);
+    border-radius: 16px;
     display: flex;
     align-items: center;
     flex-direction: row;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(var(--joeysvelte-frame-background-blur));
+    -webkit-backdrop-filter: blur(var(--joeysvelte-frame-background-blur));
     height: 100%;
+    color: var(--joeysvelte-text-colors-primary);
+    background-color: var(--joeysvelte-frame-background-color);
+    // line-height: 100%;
 }
 
 img {
     width: 24px;
     height: 24px;
-    margin-right: 4px;
+    margin-right: var(--joeysvelte-general-gap-sm);
     user-select: none;
 }
 img:not([src]) {
@@ -23,7 +28,6 @@ img:not([src]) {
 
 <script lang="ts">
     import Clickable from "./Clickable.svelte";
-    import { currentTheme } from "./Theming.js";
     
     export let onClick: ((event: MouseEvent) => void) | string | undefined = undefined;
     export let preloadLink = true;
@@ -34,17 +38,18 @@ img:not([src]) {
     export let color: string | null = null;
 </script>
 
-<Clickable
-    height={height}
-    onClick={onClick}
-    copyOnClick={copyOnClick}
-    preloadLink={preloadLink}
->
-    <div style:color={color || $currentTheme.text.primary.color}>
+<span>
+    <Clickable
+        height={height}
+        onClick={onClick}
+        copyOnClick={copyOnClick}
+        preloadLink={preloadLink}
+        style="color:{color}"
+    >
         <!-- svelte-ignore a11y-missing-attribute -->
         {#if iconSrc}
             <img src={iconSrc} />
         {/if}
         <slot />
-    </div>
-</Clickable>
+    </Clickable>
+</span>

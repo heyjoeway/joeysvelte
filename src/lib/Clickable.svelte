@@ -1,34 +1,34 @@
 <style lang="scss">
-.clickable {
-    cursor: pointer;
-    transform: scale(100%);
-    transition: opacity 0.1s, scale 0.05s;
-    transition-timing-function: cubic-bezier(0, 0.55, 0.45, 1);
-    user-select: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    word-break: break-all;
-}
+    .clickable {
+        cursor: pointer;
+        transform: scale(100%);
+        transition: opacity 0.1s, scale 0.05s;
+        transition-timing-function: cubic-bezier(0, 0.55, 0.45, 1);
+        user-select: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        word-break: break-all;
+        
+        &:hover {
+            opacity: 100%;
+            background-color: var(--joeysvelte-clickable-colors-hover);
+        }
 
-.clickable:hover {
-    opacity: 100%;
-    background-color: rgba(255,255,255,0.1);
-}
-
-.clickable:active {
-    transform: scale(90%);
-    opacity: 90%;
-    background-color: rgba(255,255,255,0.05);
-}
+        &:active {
+            transform: scale(90%);
+            opacity: 90%;
+            background-color: var(--joeysvelte-clickable-colors-active);
+        }
+    }
 
 a {
-    color: white;
+    color: var(--joeysvelte-text-colors-primary);
     text-decoration: none;
 }
 
 a:hover {
-    color: white;
+    color: var(--joeysvelte-text-colors-primary);
 }
 </style>
 

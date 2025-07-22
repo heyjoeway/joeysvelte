@@ -1,22 +1,26 @@
 <style lang="scss">
     div {
         min-width: 200px;
-        position: fixed;
+        position: absolute;
         
         border-style: solid;
-        backdrop-filter: blur(32px);
-        -webkit-backdrop-filter: blur(32px);
+        border-radius: 16px;
+		backdrop-filter: blur(var(--joeysvelte-frame-background-blur));
+		-webkit-backdrop-filter: blur(var(--joeysvelte-frame-background-blur));
         
-        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        box-shadow: 0 2px 3px rgba(0,0,0,0.5);
         
         padding: 8px 0;
         font-size: 12px;
+        
+        color: var(--joeysvelte-text-colors-primary) !important;
+        background-color: var(--joeysvelte-frame-background-color);
+        border-color: var(--joeysvelte-frame-border-color-default);
+        border-width: var(--joeysvelte-frame-border-width);
     }
 </style>
 
 <script lang="ts">
-    import { currentTheme } from './Theming.js';
-    
     import { clickoutside } from '@svelte-put/clickoutside';
     import { fade } from 'svelte/transition';
     
@@ -33,20 +37,20 @@
     
     export function open(event: MouseEvent) {
         event.preventDefault();
-        x = event.clientX;
-        y = event.clientY;
+        x = event.pageX;
+        y = event.pageY;
         
         const windowWidth = document.documentElement.clientWidth;
         const windowHeight = document.documentElement.clientHeight;
-
-        if (x > windowWidth / 2) {
+        
+        if (event.clientX > windowWidth / 2) {
             xAlignment = "right";
             x = windowWidth - x;
         } else {
             xAlignment = "left";
         }
         
-        if (y + 200 > windowHeight) {
+        if (event.clientY + 200 > windowHeight) {
             yAlignment = "bottom";
             y = windowHeight - y;
         } else {
@@ -69,10 +73,7 @@
             on:clickoutside={() => isOpen = false}
             style={styleObjToStr({
                 [xAlignment]: `${x}px`,
-                [yAlignment]: `${y}px`,
-                "background-color": $currentTheme.frame.background.color,
-                "border-color": $currentTheme.frame.border.color,
-                "border-width": $currentTheme.frame.border.width
+                [yAlignment]: `${y}px`
             })}
         >
             <slot />

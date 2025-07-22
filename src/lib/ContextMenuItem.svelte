@@ -8,6 +8,8 @@ div {
     display: flex;
     align-items: center;
     flex-direction: row;
+    
+    color: var(--joeysvelte-text-colors-primary);
 }
 
 img {
@@ -32,7 +34,7 @@ img:not([src]) {
 </script>
 
 <Clickable width='100%' height='24px' onClick={onClick}>
-    <div style:color={$currentTheme.text.primary.color}>
+    <div>
         <!-- svelte-ignore a11y-missing-attribute -->
         <img
             style={styleObjToStr({

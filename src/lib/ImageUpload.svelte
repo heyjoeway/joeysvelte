@@ -6,7 +6,8 @@ div {
     label {
         margin-left: 12px;
         margin-bottom: 4px;
-        user-select: none  ;
+        user-select: none;
+        color: var(--joeysvelte-text-colors-secondary);
     }
     
     div {
@@ -34,7 +35,6 @@ div {
 import Fa from "svelte-fa";
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-import { currentTheme } from "./Theming";
 import Button from "./Button.svelte";
 import type { ImageUploadFile } from "./ImageUpload.ts";
 
@@ -62,9 +62,7 @@ function clear() {
 </script>
 <div>
     {#if label}
-        <label for={label}
-            style:color={$currentTheme.text.secondary.color}
-        >
+        <label for={label}>
             {label}
         </label>
     {/if}

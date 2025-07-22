@@ -1,6 +1,4 @@
 <script lang="ts">
-    import { currentTheme } from "./Theming.js";
-
     import Animations from "./Animations.js";
     const blurFall = Animations.blurFall;
 
@@ -11,11 +9,7 @@
     });
 </script>
 
-<div
-    class="bg"
-    style:background-color={$currentTheme.background.color}
-    style:background-image="url({$currentTheme.background.image.uri})"
->
+<div class="bg">
     {#if startAnimation}
         <div
             class="bg-element"
@@ -24,7 +18,6 @@
                 delay: 250,
                 duration: 1000,
             }}
-            style:color={$currentTheme.background.topLeft.color}
         >
             <slot name="topLeft"></slot>
         </div>
@@ -38,7 +31,6 @@
                 rotateStart: 60,
                 rotateEnd: 45,
             }}
-            style:color={$currentTheme.background.bottomRight.color}
         >
             <slot name="bottomRight"></slot>
         </div>
@@ -52,28 +44,26 @@
         font-weight: normal;
         user-select: none;
         pointer-events: none;
+        filter: blur(12px);
+        position: absolute;
+        text-transform: lowercase;
+        white-space: nowrap;
     }
 
     #bg-top-left {
-        position: absolute;
         font-size: calc(min(40vw, 350px));
         top: -7vw;
         left: 0.95vh;
         overflow-x: hidden;
-        filter: blur(12px);
-        white-space: nowrap;
-        text-transform: lowercase;
+        color: var(--joeysvelte-bg-topLeft-color);
     }
 
     #bg-bottom-right {
-        position: absolute;
         font-size: calc(min(92vw, 1000px));
         bottom: -0.5em;
         right: -0.1em;
-        filter: blur(12px);
         rotate: z 45deg;
-        white-space: nowrap;
-        text-transform: lowercase;
+        color: var(--joeysvelte-bg-bottomRight-color);
     }
 
     .bg {
@@ -86,5 +76,8 @@
         background-size: cover;
         z-index: -9999;
         font-family: "franklin_gothicregular";
+        
+        background-color: var(--joeysvelte-bg-backgroundColor);
+        /* background-image: url(--joeysvelte-bg-backgroundImage-uri); TODO? */
     }
 </style>

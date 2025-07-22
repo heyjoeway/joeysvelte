@@ -1,6 +1,6 @@
 <script lang="ts">
 
-import { currentTheme } from "./Theming";
+import { currentTheme } from "./Theming.js";
 
 export let label: string = "";
 
@@ -14,8 +14,13 @@ function rgba2rgb(rgba: string) {
 
 <optgroup
     label={label}
-    style:color={$currentTheme.text.primary.color}
     style:background-color={rgba2rgb($currentTheme.textfield.background.color)}
 >
     <slot></slot>
 </optgroup>
+
+<style lang="scss">
+    optgroup {
+        color: var(--joeysvelte-text-colors-primary);
+    }
+</style>

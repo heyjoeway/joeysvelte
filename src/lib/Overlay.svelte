@@ -7,8 +7,8 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0,0,0,0.5);
-        backdrop-filter: blur(8px);
+        background-color: var(--joeysvelte-overlay-backgroundColor);
+        backdrop-filter: blur(var(--joeysvelte-overlay-blur));
     }
     
     .outer-container {
@@ -23,8 +23,6 @@
         overflow-x: hidden;
         padding: 32px;
         box-sizing: border-box;
-        
-        scrollbar-color: #444 #000
     }
 </style>
 

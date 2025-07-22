@@ -7,7 +7,8 @@ div {
     label {
         margin-left: 12px;
         margin-bottom: 4px;
-        user-select: none  ;
+        user-select: none;
+        color: var(--joeysvelte-text-colors-secondary);
     }
     
     input {
@@ -15,8 +16,12 @@ div {
         border: none;
         padding: 10px 12px;
         border-radius: 24px;
-        backdrop-filter: blur(32px);
+		backdrop-filter: blur(var(--joeysvelte-frame-background-blur));
+		-webkit-backdrop-filter: blur(var(--joeysvelte-frame-background-blur));
         box-sizing: border-box;
+        --placeholder-color: var(--joeysvelte-text-colors-secondary);
+        color: var(--joeysvelte-text-colors-primary);
+        background-color: var(--joeysvelte-text-backgroundColor);
         
         &:focus {
             outline: none;
@@ -34,8 +39,6 @@ div {
 
 <script lang="ts">
 
-import { currentTheme } from "./Theming.js";
-
 export let value: string = "";
 export let label: string = "";
 export let placeholder: string = "";
@@ -48,9 +51,7 @@ export let onKeydown: (event: KeyboardEvent) => void = () => {};
 
 <div>
     {#if label}
-        <label for={label}
-            style:color={$currentTheme.text.secondary.color}
-        >
+        <label for={label}>
             {label}
         </label>
     {/if}
@@ -60,9 +61,6 @@ export let onKeydown: (event: KeyboardEvent) => void = () => {};
         type="text"
         placeholder={placeholder}
         autofocus={autofocus}
-        style="--placeholder-color: {$currentTheme.text.secondary.color}"
-        style:color={$currentTheme.text.primary.color}
-        style:background-color={$currentTheme.textfield.background.color}
         bind:value={value}
         on:input={onInput}
         on:keydown={onKeydown}

@@ -1,6 +1,6 @@
 <script lang="ts">
 
-import { currentTheme } from "./Theming";
+import { currentTheme } from "./Theming.js";
 
 export let value: string;
 
@@ -14,8 +14,13 @@ function rgba2rgb(rgba: string) {
 
 <option
     value={value}
-    style:color={$currentTheme.text.primary.color}
     style:background-color={rgba2rgb($currentTheme.textfield.background.color)}
 >
     <slot></slot>
 </option>
+
+<style lang="scss">
+    option {
+        color: var(--joeysvelte-text-colors-primary);
+    }
+</style>

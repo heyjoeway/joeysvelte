@@ -13,11 +13,12 @@ div {
         border: none;
         padding: 10px 12px;
         border-radius: 24px;
-        backdrop-filter: blur(32px);
+		backdrop-filter: blur(var(--joeysvelte-frame-background-blur));
+		-webkit-backdrop-filter: blur(var(--joeysvelte-frame-background-blur));
         box-sizing: border-box;
         
-        color: var(--menu-color);
-        background-color: var(--menu-background-color);
+        color: var(--joeysvelte-text-colors-primary);
+        background-color: var(--joeysvelte-text-backgroundColor);
         
         -moz-appearance:none; /* Firefox */
         -webkit-appearance:none; /* Safari and Chrome */
@@ -47,8 +48,6 @@ div {
 </style>
 
 <script lang="ts">
-    
-import { currentTheme } from "./Theming";
 import Fa from "svelte-fa";
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
@@ -61,8 +60,6 @@ export let onChange: (event: Event) => void;
     <select
         bind:value={value}
         on:change={onChange}
-        style:color={$currentTheme.text.primary.color}
-        style:background-color={$currentTheme.textfield.background.color}
     >
         <slot></slot>
     </select>

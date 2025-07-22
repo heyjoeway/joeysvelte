@@ -2,6 +2,7 @@
 
 <script lang="ts">
     import { onMount } from 'svelte';
+    import ThemeProvider from './ThemeProvider.svelte';
     
     let anchor: Node;
     
@@ -23,5 +24,7 @@
 </script>
 
 <div bind:this={anchor} class="anchor">
-    <slot />
+    <ThemeProvider>
+        <slot />
+    </ThemeProvider>
 </div>

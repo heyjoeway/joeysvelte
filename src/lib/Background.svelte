@@ -1,4 +1,6 @@
 <script lang="ts">
+    import HideDuringPrint from "./HideDuringPrint.svelte";
+    
     import Animations from "./Animations.js";
     const blurFall = Animations.blurFall;
 
@@ -9,6 +11,7 @@
     });
 </script>
 
+<HideDuringPrint>
 <div class="bg">
     {#if startAnimation}
         <div
@@ -36,6 +39,7 @@
         </div>
     {/if}
 </div>
+</HideDuringPrint>
 
 <style>
     .bg-element {

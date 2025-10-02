@@ -17,8 +17,14 @@
 }
 </style>
 
-<div class="container">
-    <div><slot name="left"></slot></div>
-    <div><slot name="center"></slot></div>
-    <div><slot name="right"></slot></div>
-</div>
+<HideDuringPrint>
+    <div class="container">
+        <div><slot name="left"></slot></div>
+        <div><slot name="center"></slot></div>
+        <div><slot name="right"></slot></div>
+    </div>
+</HideDuringPrint>
+
+<script lang="ts">
+    import HideDuringPrint from "./HideDuringPrint.svelte";
+</script>

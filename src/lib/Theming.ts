@@ -1,5 +1,6 @@
 import { persisted } from 'svelte-persisted-store'
 import type { ImageUploadFile } from './ImageUpload.ts';
+import { get } from 'svelte/store';
 
 export interface Theme {
     general: {
@@ -420,3 +421,13 @@ export let bundledThemes: Record<string, Theme> = {
     "Light": lightTheme
 };
 export let savedThemes = persisted('themes.1', {} as Record<string, Theme>);
+
+export function getThemeByName(name: string): Theme {
+    if (name in bundledThemes) {
+        return bundledThemes[name];
+    } else if (name in savedThemes) {
+        return get(savedThemes)[name];
+    } else {
+        return get(currentTheme);
+    }
+}

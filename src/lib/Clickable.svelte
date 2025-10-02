@@ -74,34 +74,40 @@ a:hover {
     }
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-<div
-    class="clickable"
-    on:click={handleClick}
-    on:contextmenu={handleContextMenu}
-    style={style}
-    style:width={width}
-    style:height={height}
->
-    {#if typeof onClick === 'string'}
-        <a
-            bind:this={elementA}
-            on:click={onAClick} href={onClick}
-            data-sveltekit-reload={!preloadLink}
-            data-sveltekit-preload-data={preloadLink ? "hover" : "tap"}
-        >
-            {#if showCopyConfirmation}
-                ✅ Copied!
-            {:else}
-                <slot></slot>
-            {/if}
-        </a>
-    {:else}
+
+{#if typeof onClick === 'string'}
+    <a
+        bind:this={elementA}
+        on:click={onAClick} href={onClick}
+        data-sveltekit-reload={!preloadLink}
+        data-sveltekit-preload-data={preloadLink ? "hover" : "tap"}
+        on:contextmenu={handleContextMenu}
+        class="clickable"
+        style={style}
+        style:width={width}
+        style:height={height}
+    >
         {#if showCopyConfirmation}
             ✅ Copied!
         {:else}
             <slot></slot>
         {/if}
-    {/if}
-</div>
+    </a>
+{:else}
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
+    <div
+        class="clickable"
+        on:click={handleClick}
+        on:contextmenu={handleContextMenu}
+        style={style}
+        style:width={width}
+        style:height={height}
+    >
+        {#if showCopyConfirmation}
+            ✅ Copied!
+        {:else}
+            <slot></slot>
+        {/if}
+    </div>
+{/if}

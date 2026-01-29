@@ -45,7 +45,7 @@
     </style>
     
 <script lang="ts">
-    import { styleObjToStr } from '$lib/Utils.js';
+    import { styleObjToStr } from './Utils.js';
     
     export let value: string = "";
     export let label: string = "";

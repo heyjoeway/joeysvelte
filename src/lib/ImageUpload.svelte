@@ -38,7 +38,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import Button from "./Button.svelte";
 import type { ImageUploadFile } from "./ImageUpload.ts";
 
-export let value: ImageUploadFile;
+export let value: ImageUploadFile | undefined;
 export let label: string = "";
 
 function onFileChange(e: Event) {
@@ -66,7 +66,7 @@ function clear() {
             {label}
         </label>
     {/if}
-    {#if value.uri}
+    {#if value && value.uri}
         <div>
             <span>{value.name}</span>
             <Button onClick={clear}>

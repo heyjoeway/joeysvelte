@@ -1,20 +1,23 @@
 <script lang="ts">
 
-import { currentTheme } from "./Theming.js";
+import { rgba2rgb } from "./Utils.js";
+import { getPropStore } from "./Theming.js";
+import { derived } from "svelte/store";
 
 export let label: string = "";
 
-function rgba2rgb(rgba: string) {
-    // Discard the alpha value
-    let [r, g, b] = rgba.replace("rgba(", "").replace(")", "").split(",").map((x) => parseInt(x));
-    return `rgb(${r}, ${g}, ${b})`;
-}
+let bgColorStore = getPropStore("textfield.backgroundColor");
+let bgColorRgbStore = derived(bgColorStore, ($bgColorStore) => {
+    if (!$bgColorStore) return "";
+    return rgba2rgb($bgColorStore);
+});
 
 </script>
 
+<!-- We have to remove alpha from option bg or it no workie -->
 <optgroup
     label={label}
-    style:background-color={rgba2rgb($currentTheme.textfield.background.color)}
+    style:background-color={$bgColorRgbStore}
 >
     <slot></slot>
 </optgroup>

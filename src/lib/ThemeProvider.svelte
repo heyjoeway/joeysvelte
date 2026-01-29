@@ -1,36 +1,25 @@
 <script lang="ts">
-	import { getThemeByName } from "./Theming.js";
-	import { styleObjToStr } from '$lib/Utils.js';
+	// Supports weights 100-700
+	import '@fontsource-variable/ibm-plex-sans';
 	
-	export let theme: string = "";	
+	import { getThemeStore, themeToCssVars } from "./Theming.js";
+	import { styleObjToStr } from './Utils.js';
+    import { derived } from 'svelte/store';
 	
-	// Recursively for each item in $currentTheme, convert the object to a string
-	// For example $currentTheme.text.primary.color becomes --joeysvelte-text-colors-primary
-	function themeToStyleObj(theme: any, prefix: string = 'joeysvelte'): Record<string, string> {
-		const styleObj: Record<string, string> = {};
-		for (const key in theme) {
-			if (Array.isArray(theme[key])) {
-				for (let index = 0; index < theme[key].length; index++) {
-					const val = theme[key][index];
-					styleObj[`--${prefix}-${key}-${index + 1}`] = val;
-				}
-			} else if (typeof theme[key] === 'object' && theme[key] !== null) {
-				Object.assign(styleObj, themeToStyleObj(theme[key], `${prefix}-${key}`));
-			} else {
-				styleObj[`--${prefix}-${key}`] = theme[key];
-			}
+	export let theme: string = "";
+	let themeStore = getThemeStore(theme);
+	let styleStr = derived(
+		themeStore,
+		($themeStore) => {
+			if (!$themeStore) return "";
+			return styleObjToStr(themeToCssVars($themeStore))
 		}
-		return styleObj;
-	}
+	);
 </script>
 
 <span style={
 	"display: contents;"
-	+ styleObjToStr(
-		themeToStyleObj(
-			getThemeByName(theme)
-		)
-	)
+	+ $styleStr
 }>
 	<slot></slot>
 </span>
@@ -51,7 +40,7 @@
 	}
 	
 	span {
-		font: 400 16px/1.5 'IBM Plex Sans Variable',sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+		font: 400 16px/1.5 'IBM Plex Sans Variable',sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol" !important;
 		line-height: 1.7;
 		font-weight: 500;
 	}
@@ -168,9 +157,12 @@
 		padding-bottom: 8px;
 	}
 	
-	:global(code), :global(pre), :global(textarea), :global(table) {
+	:global(code), :global(pre), :global(textarea), :global(table),
+	:global(input[type="text"]), :global(input[type="search"]),
+	:global(input[type="url"]), :global(input[type="tel"]),
+	:global(input[type="email"]) {
 		font-family: 'terminus_ttf', monospace;
-		font-weight: bold;
+		// font-weight: bold;
 		direction: ltr;
 		text-align: left;
 		white-space: pre;

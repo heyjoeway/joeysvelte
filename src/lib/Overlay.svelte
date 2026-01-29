@@ -66,10 +66,8 @@
 
 <svelte:window on:popstate={onPopState} />
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-<RootAnchor>
-    {#if open}
+{#if open}
+    <RootAnchor>
         <ScrollBlocker />
         
         <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -95,5 +93,5 @@
         >
             <slot />
         </div>
-    {/if}
-</RootAnchor>
+    </RootAnchor>
+{/if}

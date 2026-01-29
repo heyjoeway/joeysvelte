@@ -72,7 +72,25 @@
 	
 	:global(li) {
 		margin-bottom: 8px;
+		list-style: none;
+		position: relative;
+		
+		&::before {
+			content: "•";
+			position: absolute;
+			left: -16px;
+			color: var(--joeysvelte-text-colors-primary);
+		}
 	}
+
+	:global(ul ul li)::before {
+		content: "◦" !important;
+	}
+
+	:global(ul ul ul li)::before {
+		content: "▪" !important;
+	}
+	
 	
 	:global(pre) {
 		overflow: auto;

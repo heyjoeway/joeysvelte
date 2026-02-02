@@ -12,36 +12,41 @@ div {
     color: var(--joeysvelte-text-colors-primary);
 }
 
-img {
+img, span {
     width: 24px;
     height: 24px;
     margin-right: 4px;
     user-select: none;
-}
-img:not([src]) {
-    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 6px;
 }
 
 </style>
 
 <script lang="ts">
     import Clickable from "./Clickable.svelte";
-    import { currentTheme } from "./Theming.js";
-    import { styleObjToStr } from "./Utils.js";
         
     export let onClick: ((event: MouseEvent) => void) | string | undefined = undefined;
-    export let iconSrc: string = "";
+    export let icon: string = "";
+    export let disabled: boolean = false;
+    
+    let iconIsUrl = icon.length > 3;
 </script>
 
-<Clickable width='100%' height='24px' onClick={onClick}>
+<Clickable
+    width='100%' height='24px'
+    onClick={onClick}
+    disabled={disabled}
+>
     <div>
         <!-- svelte-ignore a11y-missing-attribute -->
-        <img
-            style={styleObjToStr({
-                visibility: iconSrc ? "" : "hidden"
-            })}
-            src={iconSrc}
-        />
+        {#if iconIsUrl}
+            <img src={icon} />
+        {:else}
+            <span>{@html icon}</span>
+        {/if}
         <slot />
     </div>
 </Clickable>

@@ -35,6 +35,7 @@ a:hover {
 <script lang="ts">
     export let width: string = "default";
     export let height: string = "default";
+    export let disabled: boolean = false;
     export let onClick: ((event: MouseEvent) => void) | string | undefined = undefined;
     export let onContextMenu: ((event: MouseEvent) => void) | undefined = undefined;
     export let preloadLink = true;
@@ -42,6 +43,7 @@ a:hover {
     export let copyOnClick: string | undefined = undefined;
     
     async function handleClick(event: MouseEvent) {
+        if (disabled) return;
         if (typeof onClick === 'function') {
             onClick(event);
             return;
@@ -58,6 +60,7 @@ a:hover {
     }
     
     function handleContextMenu(event: MouseEvent) {
+        if (disabled) return;
         if (typeof onContextMenu === 'function') {
             event.preventDefault();
             onContextMenu(event);
@@ -69,6 +72,7 @@ a:hover {
     let elementA: HTMLAnchorElement;
     
     async function onAClick(event: MouseEvent) {
+        if (disabled) return;
         if (!copyOnClick) return;
         event.preventDefault();
     }
@@ -86,6 +90,9 @@ a:hover {
         style={style}
         style:width={width}
         style:height={height}
+        style:pointer-events={disabled ? 'none' : 'auto'}
+        style:opacity={disabled ? '70%' : '100%'}
+        style:filter={disabled ? 'grayscale(100%)' : 'none'}
     >
         {#if showCopyConfirmation}
             ✅ Copied!
@@ -103,6 +110,9 @@ a:hover {
         style={style}
         style:width={width}
         style:height={height}
+        style:pointer-events={disabled ? 'none' : 'auto'}
+        style:opacity={disabled ? '70%' : '100%'}
+        style:filter={disabled ? 'grayscale(100%)' : 'none'}
     >
         {#if showCopyConfirmation}
             ✅ Copied!

@@ -68,7 +68,7 @@
 {#if isOpen}
     <RootAnchor>
         <div
-            transition:fade={{ duration: 100 }}
+            transition:fade={{ duration: 50 }}
             use:clickoutside={{ event: 'mousedown' }}
             on:clickoutside={() => isOpen = false}
             style={styleObjToStr({

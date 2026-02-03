@@ -2,7 +2,7 @@
     .clickable {
         cursor: pointer;
         transform: scale(100%);
-        transition: opacity 0.1s, scale 0.05s;
+        transition: opacity 0.05s, scale 0.05s;
         transition-timing-function: cubic-bezier(0, 0.55, 0.45, 1);
         user-select: none;
         display: flex;

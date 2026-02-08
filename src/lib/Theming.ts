@@ -23,9 +23,8 @@ export interface Theme {
     "bg.topLeft.text": string,
     "bg.topLeft.color": string,
     "bg.bottomRight.color": string,
-    // idk man this is what copilot gave me and i don't see a better way
-    "brand.colors": [string, string, string],
-    "header.colors": [string, string, string, string, string, string],
+    "brand.colors": string[],
+    "header.colors": string[],
     "item.folder.color": string,
     "item.liveStream.colors.checking": string,
     "item.liveStream.colors.online": string,
@@ -114,7 +113,7 @@ const darkTheme = {
     "frame.background.color": "rgba(0, 0, 0, 0.6)",
     "frame.background.blur": "8px",
     "frame.border.width": "1px",
-    "frame.border.color.default": "#222",
+    "frame.border.color.default": "#888",
     "frame.border.color.focus": "orange",
     "action.colors.confirm": "lightgreen",
     "action.colors.warning": "orange",
@@ -249,6 +248,13 @@ export let bundledThemesStore: Writable<Record<string, Theme>> = writable({
     "Dark": darkTheme,
     "Light": lightTheme
 });
+
+export let currentThemeIsBundled = derived(
+    [currentThemeKey, bundledThemesStore],
+    ([$currentThemeKey, $bundledThemesStore]) => {
+        return $currentThemeKey in $bundledThemesStore;
+    }
+);
 
 export let currentThemeStore = derivedMapsStore(
     currentThemeKey,

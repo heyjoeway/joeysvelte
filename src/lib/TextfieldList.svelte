@@ -29,25 +29,27 @@ import { faTrash, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import Button from "./Button.svelte";
 import Textfield from "./Textfield.svelte";
 
-export let value: Array<string>;
+export let value: string[] | undefined;
 
 </script>
 
 <div>
-    {#each value as text, i}
+    {#if value}{#each value as text, i}
         <div class="entry">
             <div>
                 <Textfield bind:value={text} />
             </div>
             <Button onClick={() => {
+                if (!value) return;
                 value.splice(i, 1);
                 value = value; // trigger reactivity
             }}>
                 <Fa icon={faTrash} />
             </Button>
         </div>
-    {/each}
+    {/each}{/if}
     <Button onClick={() => {
+        if (!value) value = [];
         value.push("");
         value = value; // trigger reactivity
     }}>

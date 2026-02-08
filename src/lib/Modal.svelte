@@ -32,6 +32,7 @@ h1 {
     gap: var(--joeysvelte-general-gap-sm);
     flex-direction: row;
     justify-content: flex-end;
+    margin-top: var(--joeysvelte-general-gap-sm);
 }
 
 </style>

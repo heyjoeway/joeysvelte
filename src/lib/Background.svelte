@@ -1,8 +1,7 @@
 <script lang="ts">
     import HideDuringPrint from "./HideDuringPrint.svelte";
     
-    import Animations from "./Animations.js";
-    const blurFall = Animations.blurFall;
+    import { blurFall } from "./Animations.js";
 
     let startAnimation = false;
     import { onMount } from "svelte";

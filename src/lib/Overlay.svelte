@@ -58,15 +58,11 @@
         state: OverlayPopState;
     }
     
-    // TODO support nested overlays
     function onPopState(e: OverlayPopEvent) {
         if (id === undefined) return;
         if (e.state) {
             if (e.state.overlayID !== undefined) {
-                console.log(id);
-                console.log(e.state.overlayID);
-                
-                if (e.state.overlayID != id) return;
+                if (e.state.overlayID == id) return;
             }
         }
         if (!allowClose) return;

@@ -43,24 +43,54 @@
     
     let outerContainer: Node;
     
+    let id: number | undefined = undefined;
+    
     function clickOutsideHandler(event: MouseEvent) {
         if (event.target !== outerContainer) return;
         history.back();
     }
     
+    interface OverlayPopState {
+        overlayID: number | undefined;
+    }
+    
+    interface OverlayPopEvent extends PopStateEvent {
+        state: OverlayPopState;
+    }
+    
     // TODO support nested overlays
-    function onPopState(e: any) {
+    function onPopState(e: OverlayPopEvent) {
+        if (id === undefined) return;
+        if (e.state) {
+            if (e.state.overlayID !== undefined) {
+                console.log(id);
+                console.log(e.state.overlayID);
+                
+                if (e.state.overlayID != id) return;
+            }
+        }
         if (!allowClose) return;
         open = false;
+        openPrev = false;
     }
     
     $: {
         if (open && !openPrev)  {
             // svelte-ignore reactive_declaration_module_script_dependency
             // We never set overlayID in the module block so it shouldn't matter
-            history.pushState({}, "", new URL(`?overlay-${overlayID++}`, location.href).href);
+            id = overlayID++;
+            console.log(id);
+            history.pushState(
+                {
+                    overlayID: id
+                }, "",
+                new URL(
+                    `?overlay-${id}`,
+                    location.href
+                ).href
+            );
+            openPrev = true;
         }
-        openPrev = open;
     }
 </script>
 

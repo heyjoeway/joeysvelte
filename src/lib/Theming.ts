@@ -314,7 +314,14 @@ export function getCssVar(key: keyof Theme) {
 export function themeToCssVars(theme: Theme, prefix: string = "--joeysvelte") {
     let cssVars: Record<string, string> = {};
     for (let [k, v] of Object.entries(theme)) {
-        cssVars[`${prefix}-${k.replace(/\./g, '-')}`] = typeof v === 'string' ? v : '';
+        const cssVarKey = `${prefix}-${k.replace(/\./g, '-')}`;
+        if (Array.isArray(v)) {
+            for (let i = 0; i < v.length; i++) {
+                cssVars[`${cssVarKey}-${i+1}`] = v[i];
+            }
+        } else {
+            cssVars[cssVarKey] = typeof v === 'string' ? v : '';
+        }
     }
     return cssVars;
 }

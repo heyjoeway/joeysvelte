@@ -71,7 +71,7 @@
 	}
 	
 	:global(li) {
-		margin-bottom: 8px;
+		margin-bottom: 4px;
 		list-style: none;
 		position: relative;
 		
@@ -405,11 +405,7 @@
 			print-color-adjust: exact !important;
 			-webkit-print-color-adjust: exact !important;
 		}
-		
-		:global(li) {
-			margin-bottom: 8px;
-		}
-		
+				
 		span {
 			line-height: 1.25;
 		}
